@@ -3,10 +3,13 @@ package org.example.calculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 public class CalculatorTest {
 
@@ -97,8 +100,22 @@ public class CalculatorTest {
                     Calculator.greeting("Kalle", LocalTime.of(12, 1)));
 
         }
+    }
 
+    @Nested
+    class UnpredictableDice {
 
+        @Test
+        void canReturnOne(){
+            var random = Mockito.mock(Random.class);
+            when(random.nextInt(1,7)).thenReturn(1);
+
+            //Calculator.Die die = new Calculator.Die(new Random(12));
+
+            Calculator.Die die = new Calculator.Die(random);
+            assertEquals(1, die.roll());
+
+        }
     }
 
 
