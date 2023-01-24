@@ -20,4 +20,8 @@ public class CalculatorTest {
         assertEquals(2,result);
     }
 
+    @Test
+    void addOneWithTwoShouldReturnThree(){
+        assertEquals(3, Calculator.test(1,2));
+    }
 }
