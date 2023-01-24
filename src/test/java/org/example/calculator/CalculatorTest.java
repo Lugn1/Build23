@@ -40,4 +40,12 @@ public class CalculatorTest {
 
         assertEquals(1, Calculator.commonCount(array1,array2));
     }
+
+    @Test
+    void twoArraysWithSameNumbersHasTwoCommonNumbers(){
+        var array1 = new int[]{2,3};
+        var array2 = new int[]{2,3};
+
+        assertEquals(2, Calculator.commonCount(array1,array2));
+    }
 }
