@@ -7,4 +7,9 @@ public class Calculator {
         return i + i1;
 
     }
+
+    public static int commonCount(int[] array1, int[] array2) {
+
+        return 0;
+    }
 }

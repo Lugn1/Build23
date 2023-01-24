@@ -24,4 +24,12 @@ public class CalculatorTest {
     void addOneWithTwoShouldReturnThree(){
         assertEquals(3, Calculator.test(1,2));
     }
+
+    @Test
+    void twoEmptyArraysHasZeroCommonNumbers(){
+        var array1 = new int[0];
+        var array2 = new int[0];
+
+        assertEquals(0, Calculator.commonCount(array1,array2));
+    }
 }
