@@ -1,14 +1,42 @@
 package org.example.tennis;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Tennis {
-    private int score;
+    private Map<String, Integer> scores = new HashMap<>();
+
+    public Tennis() {
+        scores.put("player1", 0);
+        scores.put("player2", 0);
+    }
+
     public String readScore() {
-        if (score > 0)
-            return "15-love";
-        return "love-love";
+        int player1Score = scores.get("player1");
+        int player2Score = scores.get("player2");
+        String scoreAsString = "";
+
+        scoreAsString += getScore(player1Score);
+
+        scoreAsString += "-";
+
+        scoreAsString += getScore(player2Score);
+
+        return scoreAsString;
+    }
+
+    private static String getScore(int player1Score) {
+        if (player1Score == 2)
+            return "30";
+        else if (player1Score == 1)
+            return "15";
+        else
+            return "love";
     }
 
     public void incrementScore(String player) {
-        score++;
+
+        scores.put(player, scores.get(player) + 1);
+
     }
 }
