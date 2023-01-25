@@ -16,9 +16,10 @@ public class Tennis {
         int player2Score = scores.get("player2");
 
         if (isDeuce()){
-            return "deuce";
+            if (player1Score > player2Score)
+                return "advantage player1";
+        return "deuce";
         }
-
 
         String scoreAsString = "";
 
