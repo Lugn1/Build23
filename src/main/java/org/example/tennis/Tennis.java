@@ -41,4 +41,10 @@ public class Tennis {
         scores.put(player, scores.get(player) + 1);
 
     }
+
+    public boolean isGameOver() {
+        if (scores.get("player1") > 3 && scores.get("player1") > scores.get("player2") + 1)
+            return true;
+        return false;
+    }
 }

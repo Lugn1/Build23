@@ -2,6 +2,8 @@ package org.example.tennis;
 
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class TennisTest {
 
@@ -53,4 +55,67 @@ public class TennisTest {
         assertThat(tennis.readScore()).isEqualTo("40-love");
     }
 
+    @Test
+    void playerThatHasWon3BallsAndWinsAnotherShouldWinTheGame() {
+        Tennis tennis = new Tennis();
+
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player1");
+
+        assertThat(tennis.isGameOver()).isTrue();
+    }
+
+    @Test
+    void whenBothPlayersHasWon3BallsAndPlayer1WinsAnotherShouldNotWinTheGame() {
+        Tennis tennis = new Tennis();
+
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player1");
+
+        tennis.incrementScore("player2");
+        tennis.incrementScore("player2");
+        tennis.incrementScore("player2");
+
+        tennis.incrementScore("player1");
+
+
+        assertThat(tennis.isGameOver()).isFalse();
+    }
+
+    @Test
+    void whenOnePlayerHas2MorePointsThanTheOtherGameIsOver() {
+        Tennis tennis = new Tennis();
+
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player2");
+        tennis.incrementScore("player2");
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player2");
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player1");
+
+        assertThat(tennis.isGameOver()).isTrue();
+    }
+
+    @Test
+    void whenBothPlayersHasScoredAtLeast3BallsAndTheyHaveSameScoreShouldBeAtDeuce(){
+
+    Tennis tennis = new Tennis();
+
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player1");
+        tennis.incrementScore("player2");
+        tennis.incrementScore("player2");
+        tennis.incrementScore("player2");
+
+
+        assertThat(tennis.readScore()).isEqualTo("deuce");
+
+        assertThat(tennis.isGameOver()).isTrue();
+    }
 }
