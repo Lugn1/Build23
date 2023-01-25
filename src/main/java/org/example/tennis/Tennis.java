@@ -15,6 +15,13 @@ public class Tennis {
         int player1Score = scores.get("player1");
         int player2Score = scores.get("player2");
 
+        if (isGameOver()){
+            if (player1Score > player2Score)
+                return "winner player1";
+            else
+                return "winner player2";
+        }
+
         if (isDeuce()){
             if (player1Score > player2Score)
                 return "advantage player1";
@@ -57,6 +64,8 @@ public class Tennis {
 
     public boolean isGameOver() {
         if (scores.get("player1") > 3 && scores.get("player1") > scores.get("player2") + 1)
+            return true;
+        if (scores.get("player2") > 3 && scores.get("player2") > scores.get("player1") + 1)
             return true;
         return false;
     }
